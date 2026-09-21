@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shop - NAB NEAR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <h1>NAB NEAR</h1>
+        <div>
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+            <a href="/cart">Cart</a>
+        </div>
+    </nav>
+
+    <div class="filter-bar">
+        <a href="/shop">All</a>
+        <a href="/shop?category=Men">Men</a>
+        <a href="/shop?category=Women">Women</a>
+        <a href="/shop?category=Accessories">Accessories</a>
+    </div>
+
+    <h2 style="text-align:center;">{{ category }} Collection</h2>
+    <div class="products">
+        {% for p in products %}
+        <div class="product">
+            <img src="{{ p.image }}">
+            <h4>{{ p.name }}</h4>
+            <p class="size">{{ p.size }}</p>
+            <p><strong>₦{{ p.price }}</strong></p>
+            <a href="/add_to_cart/{{ p.id }}" class="btn-small">Add to Cart</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

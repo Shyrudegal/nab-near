@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart - NAB NEAR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <h1>NAB NEAR</h1>
+        <div>
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+        </div>
+    </nav>
+
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        {% if cart %}
+            {% for item in cart %}
+            <div class="cart-item">
+                <img src="{{ item.image }}">
+                <div>
+                    <h4>{{ item.name }}</h4>
+                    <p>₦{{ item.price }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <h3>Total: ₦{{ total }}</h3>
+            <a href="https://wa.me/234XXXXXXXXXX?text=Hi NAB NEAR, I want to order: {% for i in cart %}{{ i.name }}, {% endfor %} Total ₦{{ total }}" class="btn">Checkout via WhatsApp</a>
+            <br><br>
+            <a href="/clear_cart" style="color:red;">Clear Cart</a>
+        {% else %}
+            <p>Cart is empty. Go shopping!</p>
+            <a href="/shop" class="btn">Shop Now</a>
+        {% endif %}
+    </div>
+</body>
+</html>
